@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Fragment } from 'react';
 import { firebase } from '../../fireBaseCatalog/firebaseInit';
 
 import TodoApp from '../../todosCatalog/App';
@@ -17,11 +17,9 @@ export const UserPanel = ({onClickLogOut, onClickRemove}) => {
         </button>
         <br />
         <br />
-        {
-        firebase.auth().currentUser.emailVerified ? 
+        {firebase.auth().currentUser.emailVerified ? 
         <TodoApp /> : 
-        <span>E-mail не подтвержден!</span>
-        }
+        <span>E-mail не подтвержден!</span>}
       </div>
     )
 }
