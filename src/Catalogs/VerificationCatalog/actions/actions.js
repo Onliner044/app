@@ -4,7 +4,3 @@ export const visibleUserPanel = (payload) => {
         payload
     }
 }
-
-export const addRecordUser = (email) => {
-    
-}
