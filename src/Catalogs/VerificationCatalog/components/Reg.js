@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
-import { registration, getTypeSocialNetwork } from '../other/functions';
-import { Verification } from './Verification';
+import { registration } from '../other/functions';
 
 export const Reg = () => {
     return (
@@ -16,7 +15,6 @@ export const Reg = () => {
                 <button onClick={e => onClickRegistration(e, this.form, this.email,this.password, this.confirmPassword)}>
                     Зарегистрироваться
                 </button>
-                <Verification onClick={getTypeSocialNetwork("google")} src="https://yt3.ggpht.com/a-/ACSszfEg5xl_vAi2hBOieBvZSMPax2GhMLlJSeXApg=s900-mo-c-c0xffffffff-rj-k-no" />
             </form>
         </div>
     )

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 
-import { login } from '../other/functions';
+import { login, getTypeSocialNetwork } from '../other/functions';
+import { Verification } from './Verification';
+
 
 export const Log = ({showUserPanel}) => {
   return (
@@ -12,6 +14,7 @@ export const Log = ({showUserPanel}) => {
           <button onClick={e => onClickLogIn(e, this.email, this.password, showUserPanel)}>
             Войти
           </button>
+          <Verification onClick={getTypeSocialNetwork("google")} src="https://yt3.ggpht.com/a-/ACSszfEg5xl_vAi2hBOieBvZSMPax2GhMLlJSeXApg=s900-mo-c-c0xffffffff-rj-k-no" />
     </form>
   )
 }
