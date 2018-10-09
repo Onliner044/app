@@ -1,0 +1,12 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+.verification ul {
+  list-style-type: none;
+  display: inline-table;
+}
+.borderRed {
+  border: 1px solid red;
+}
