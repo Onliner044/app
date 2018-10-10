@@ -1,8 +1,8 @@
-import * as consts from '../actions/const';
+import { SET_VERIFICATION } from '../actions/const';
 
 const verification = (state = false, action) => {
     switch (action.type) {
-        case consts.SET_VERIFICATION:
+        case SET_VERIFICATION:
             return !state;
     }
 

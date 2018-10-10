@@ -1,17 +1,10 @@
-import * as consts from '../actions/const';
-import { addTodoInBase } from '../todoFunctions';
+import { START_TODOS, ADD_TODO, TOGGLE_TODO, DELETE_TODO, APPLY_RENAME } from '../actions/const';
 
 const todos = (state = [], action) => {
     switch (action.type) {
-      case consts.START_TODOS:
+      case START_TODOS:
         return [].concat(action.todos);
-      case consts.ADD_TODO:
-        addTodoInBase({
-          id: action.id,
-          text: action.text,
-          completed: false
-        });
-
+        case ADD_TODO:
         return [
           ...state,
           {
@@ -20,7 +13,27 @@ const todos = (state = [], action) => {
             completed: false
           }
         ];
-      case consts.TOGGLE_TODO:
+        case DELETE_TODO:
+        return state.filter((todo) => {
+          if (todo.id !== action.id) {
+            return todo;
+          }
+        });
+      case APPLY_RENAME:
+        console.log('rename', action);
+        
+        return state.map((todo) => {
+          if (todo.id === action.id) {
+            return {
+              id: todo.id,
+              text: action.text,
+              completed: todo.completed
+            }
+          }
+
+          return todo;
+        });
+      case TOGGLE_TODO:
         return state.map(todo =>
           (todo.id === action.id)
             ? {...todo, completed: !todo.completed}

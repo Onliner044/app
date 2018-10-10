@@ -2,7 +2,7 @@ import React from 'react';
 
 import AutoLogin from './AutoLogin';
 import autoVerificationInfo from '../helpers/autoVerificationInfo';
-import { getAutoVerificationEventOfType, signIn } from '../helpers/firebase/verificationFunctions';
+import { getAutoVerificationMethodOfType, signIn } from '../helpers/firebase/verificationFunctions';
 
 const Login = ({info, setInfo}) => {
   const refEmail = React.createRef();
@@ -31,7 +31,7 @@ const Login = ({info, setInfo}) => {
                     <AutoLogin 
                         key={i}
                         src={el.src}
-                        onClick={getAutoVerificationEventOfType(el.type)}
+                        onClick={getAutoVerificationMethodOfType(el.type)}
                         type={el.type}
                     />
                 ))}

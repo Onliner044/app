@@ -1,6 +1,6 @@
 import { 
   START_TODOS, ADD_TODO, SET_VISIBILITY_FILTER, TOGGLE_TODO, SET_VERIFICATION,
-  SET_REGISTRATION_INFO, SET_LOGIN_INFO
+  SET_REGISTRATION_INFO, SET_LOGIN_INFO, TOGGLE_RENAME, DELETE_TODO, APPLY_RENAME
 } from './const';
 
 export const startTodos = (todos) => ({
@@ -36,4 +36,19 @@ export const setRegistrationInfo = (info) => ({
 export const setLoginInfo = (info) => ({
   info,
   type: SET_LOGIN_INFO,
+})
+
+export const toggleRename = () => ({
+  type: TOGGLE_RENAME,
+})
+
+export const deleteTodo = (id) => ({
+  id,
+  type: DELETE_TODO,
+})
+
+export const applyRename = (id, text) => ({
+  id,
+  text,
+  type: APPLY_RENAME,
 })

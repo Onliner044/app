@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { registration } from '../helpers/verificationFunctions';
+import { registration } from '../helpers/firebase/verificationFunctions';
 
 const Registration = ({info, setInfo}) => {
     const refEmail = React.createRef();

@@ -1,33 +1,48 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addTodo } from '../helpers/actions/index';
 
-const AddTodo = ({lastIdTodo, dispatch}) => {
+import { addTodo } from '../helpers/actions/index';
+import { addTodoInDatabase } from '../helpers/firebase/databaseFunctions';
+
+const AddTodo = ({addTodo, lastIdTodo}) => {
   const refInput = React.createRef();
+
+  const onClick = () => {
+    if (!refInput.current.value.trim()) {
+      return;
+    }
+
+    addTodo(refInput.current.value, lastIdTodo);
+    addTodoInDatabase({
+      id: lastIdTodo,
+      text: refInput.current.value,
+      completed: false
+    });
+
+    refInput.current.value = '';
+  }
 
   return (
     <div>
-      <form
-        onSubmit={e => {
-          e.preventDefault()
-          if (!refInput.current.value.trim()) {
-            return
-          }
-          dispatch(addTodo(refInput.current.value, lastIdTodo))
-          refInput.current.value = ''
-        }}
-      >
-        <input ref={refInput} />
-        <button type="submit">
-          Add Todo
-        </button>
-      </form>
+      <input ref={refInput} />
+      <input
+        onClick={onClick} 
+        type="button" 
+        defaultValue="Add Todo"
+      />
     </div>
   )
 }
 
-export default connect((state) => {
-    return {
-        lastIdTodo: state.todos.length
-    }
-})(AddTodo)
+const mapStateToProps = (state) => ({
+  lastIdTodo: state.todos.length
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  addTodo: (value, lastIdTodo) => dispatch(addTodo(value, lastIdTodo))
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AddTodo);
