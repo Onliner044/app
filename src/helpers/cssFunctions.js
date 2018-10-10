@@ -3,11 +3,11 @@ export const addClass = (el, className) => {
 }
 
 export const delClass = (el, className) => {
-    //el.className = className;
+    /* ---- */
 }
 
 export const clearClass = (...elements) => {
     elements.forEach((el) => {
-        el.className = "";
+        el.className = '';
     })
 }

@@ -1,33 +1,39 @@
-import * as consts from './const';
+import { 
+  START_TODOS, ADD_TODO, SET_VISIBILITY_FILTER, TOGGLE_TODO, SET_VERIFICATION,
+  SET_REGISTRATION_INFO, SET_LOGIN_INFO
+} from './const';
 
-let nextTodoId = 0;
-export const addTodo = text => ({
-  type: consts.ADD_TODO,
-  id: nextTodoId++,
-  text
+export const startTodos = (todos) => ({
+  todos,
+  type: START_TODOS,
+})
+
+export const addTodo = (text , id) => ({
+  id,
+  text,
+  type: ADD_TODO,
 })
 
 export const setVisibilityFilter = filter => ({
-  type: consts.SET_VISIBILITY_FILTER,
-  filter
+  filter,
+  type: SET_VISIBILITY_FILTER,
 })
 
 export const toggleTodo = id => ({
-  type: consts.TOGGLE_TODO,
-  id
+  id,
+  type: TOGGLE_TODO,
 })
 
 export const setVerification = () => ({
-  type: consts.SET_VERIFICATION,
+  type: SET_VERIFICATION,
 })
 
 export const setRegistrationInfo = (info) => ({
-  type: consts.SET_REGISTRATION_INFO,
-  info
+  info,
+  type: SET_REGISTRATION_INFO,
 })
 
-export const VisibilityFilters = {
-  SHOW_ALL: consts.SHOW_ALL,
-  SHOW_COMPLETED: consts.SHOW_COMPLETED,
-  SHOW_ACTIVE: consts.SHOW_ACTIVE
-}
+export const setLoginInfo = (info) => ({
+  info,
+  type: SET_LOGIN_INFO,
+})

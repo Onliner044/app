@@ -1,18 +1,20 @@
 import React from 'react';
 
-import Login from './Login';
+import LoginContainer from '../containers/LoginContainer';
 import RegistrationContainer from '../containers/RegistrationContainer';
 
 const Verification = ({isLogin, onToggleVerification}) => {
     return (
         <div>
-            <button onClick={onToggleVerification}>
-                {isLogin ? 
+            <input 
+                onClick={onToggleVerification} 
+                type="button"
+                defaultValue= {isLogin ? 
                 'Нажмите для регистрации' : 
                 'Нажмите для входа'}
-            </button>
+            />
             {isLogin ? 
-            <Login /> :
+            <LoginContainer /> :
             <RegistrationContainer />}
         </div>
     )

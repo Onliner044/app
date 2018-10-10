@@ -2,22 +2,22 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { addTodo } from '../helpers/actions/index';
 
-const AddTodo = ({ dispatch }) => {
-  let input
+const AddTodo = ({lastIdTodo, dispatch}) => {
+  const refInput = React.createRef();
 
   return (
     <div>
       <form
         onSubmit={e => {
           e.preventDefault()
-          if (!input.value.trim()) {
+          if (!refInput.current.value.trim()) {
             return
           }
-          dispatch(addTodo(input.value))
-          input.value = ''
+          dispatch(addTodo(refInput.current.value, lastIdTodo))
+          refInput.current.value = ''
         }}
       >
-        <input ref={node => input = node} />
+        <input ref={refInput} />
         <button type="submit">
           Add Todo
         </button>
@@ -26,4 +26,8 @@ const AddTodo = ({ dispatch }) => {
   )
 }
 
-export default connect()(AddTodo)
+export default connect((state) => {
+    return {
+        lastIdTodo: state.todos.length
+    }
+})(AddTodo)

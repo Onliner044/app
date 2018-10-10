@@ -5,8 +5,17 @@ body {
 }
 .verification ul {
   list-style-type: none;
-  display: inline-table;
 }
-.borderRed {
+.autoVerification {
+  width: 25px;
+  height: 25px;
+}
+.userPanel ul {
+  list-style-type: none;
+}
+.redText {
+  color: red;
+}
+.redBorder {
   border: 1px solid red;
 }

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const Todo = ({ onClick, completed, text }) => (
   <li onClick={onClick}>
     <label>
-        <input type="checkbox" checked={completed} />
+        <input type="checkbox" defaultChecked={completed} />
     </label>
     <span>{text}</span>
   </li>

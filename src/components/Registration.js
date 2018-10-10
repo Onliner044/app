@@ -7,15 +7,16 @@ const Registration = ({info, setInfo}) => {
     const refPassword = React.createRef();
     const refConfirmPassword = React.createRef();
 
-    const onRegistration = () => registration(
-        {
-            elEmail: refEmail.current,
-            elPassword: refPassword.current,
-            elConfirmPassword: refConfirmPassword.current
-        },
-        setInfo
-    ); 
-
+    const onRegistration = () => {
+        registration({
+                elEmail: refEmail.current,
+                elPassword: refPassword.current,
+                elConfirmPassword: refConfirmPassword.current
+            },
+            setInfo
+        );
+    }
+    
     return (
         <div className="verification">
             <ul>
@@ -25,7 +26,7 @@ const Registration = ({info, setInfo}) => {
                         placeholder="E-mail" 
                         ref={refEmail} 
                     />
-                    <span className="registrationInfo">{info.infoEmail}</span>
+                    {info.infoEmail}
                 </li>
                 <li>
                     <input 
@@ -33,7 +34,7 @@ const Registration = ({info, setInfo}) => {
                         placeholder="Пароль" 
                         ref={refPassword}
                     />
-                    <span className="registrationInfo">{info.infoPassword}</span>
+                    <span>{info.infoPassword}</span>
                 </li>
                 <li>
                     <input 
@@ -41,7 +42,7 @@ const Registration = ({info, setInfo}) => {
                         placeholder="Подтверждение пароля"
                         ref={refConfirmPassword}
                     />
-                    <span className="registrationInfo">{info.infoConfirmPassword}</span>
+                    <span>{info.infoConfirmPassword}</span>
                 </li>
                 <li>
                     <input 

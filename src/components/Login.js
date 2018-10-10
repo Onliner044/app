@@ -1,23 +1,41 @@
 import React from 'react';
 
-import css from '../style.css';
+import AutoLogin from './AutoLogin';
+import autoVerificationInfo from '../helpers/autoVerificationInfo';
+import { getAutoVerificationEventOfType, signIn } from '../helpers/firebase/verificationFunctions';
 
-const Login = () => {
+const Login = ({info, setInfo}) => {
+  const refEmail = React.createRef();
+  const refPassword = React.createRef();
+
+  const login = () => {
+    setInfo("");
+    signIn(refEmail.current.value, refPassword.current.value, setInfo);
+  }
+
   return (
     <div className="verification">
         <ul>
             <li>
-                <input type="email" placeholder="E-mail" />
+                <input type="email" placeholder="E-mail" ref={refEmail} />
             </li>
             <li>
-                <input type="password" placeholder="Пароль" />
+                <input type="password" placeholder="Пароль" ref={refPassword} />
+            </li>
+            <span>{info}</span>
+            <li>
+                <input onClick={login} type="button" defaultValue="Войти" />
             </li>
             <li>
-                <button>
-                    Войти
-                </button>
+                {autoVerificationInfo.map((el, i) => (
+                    <AutoLogin 
+                        key={i}
+                        src={el.src}
+                        onClick={getAutoVerificationEventOfType(el.type)}
+                        type={el.type}
+                    />
+                ))}
             </li>
-            {/*<Verification onClick={getTypeSocialNetwork("google")} src="https://yt3.ggpht.com/a-/ACSszfEg5xl_vAi2hBOieBvZSMPax2GhMLlJSeXApg=s900-mo-c-c0xffffffff-rj-k-no" />*/}
         </ul>
     </div>
   )

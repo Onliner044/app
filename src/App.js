@@ -2,32 +2,37 @@ import React, { Component } from 'react';
 
 import Content from './components/Content';
 import VerificationContainer from './containers/VerificationContainer';
-import { checkUserLogIn } from './helpers/firebase/functions';
+import { userValidation } from './helpers/firebase/verificationFunctions';
 
 class App extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
-      isUserLogIn: false
+      isUserLogin: false
     }
   }
 
   render() {
     return (
       <div>
-        {this.state.isUserLogIn ?
+        {this.state.isUserLogin ?
           <Content /> :
           <VerificationContainer />}
       </div>
     )
   }
-
+  
   componentWillMount() {
-    if (false) {
-      this.setState({
-        isUserLogIn: true
-      });
-    }
+    userValidation(
+      (user) => {
+        if (user) {
+          this.setState({
+            isUserLogin: true
+          });
+        }
+      }
+    );
   }
 }
 
