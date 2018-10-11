@@ -14,17 +14,22 @@ const Login = ({info, setInfo}) => {
   }
 
   return (
-    <div className="verification">
-        <ul>
+    <div>
+        <ul className="text-center list-inputs list-unstyled mt-4">
             <li>
                 <input type="email" placeholder="E-mail" ref={refEmail} />
             </li>
             <li>
                 <input type="password" placeholder="Пароль" ref={refPassword} />
             </li>
-            <span>{info}</span>
+                <span>{info}</span>
             <li>
-                <input onClick={login} type="button" defaultValue="Войти" />
+                <input 
+                    className="btn btn-info mt-1"
+                    onClick={login} 
+                    type="button" 
+                    defaultValue="Войти"
+                />
             </li>
             <li>
                 {autoVerificationInfo.map((el, i) => (

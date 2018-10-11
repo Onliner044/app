@@ -1,21 +1,126 @@
 body {
-  margin: 0;
-  padding: 0;
+  margin: 0px;
+  padding: 0px;
   font-family: sans-serif;
-}
-.verification ul {
-  list-style-type: none;
+
+  background-color: dimgray;
 }
 .autoVerification {
   width: 25px;
   height: 25px;
-}
-.userPanel ul {
-  list-style-type: none;
+  margin-top: 30px;
 }
 .redText {
   color: red;
 }
 .redBorder {
   border: 1px solid red;
+}
+.centerVerification {
+  position: absolute;
+
+  height: 300px;
+  width: 500px;
+
+  left: 50%;
+  top: 50%;
+  margin-left: -250px;
+  margin-top: -150px;
+}
+.toggleBtn {
+  position: relative;
+  width: 300px;
+  left: 50%;
+  margin-left: -150px;
+}
+.border {
+  padding: 20px;
+  border-radius: 30px;
+}
+.list-inputs input[type=email],[type=password] {
+  border-radius: 12px;
+  color: #222222;
+  background-color: darkgray;
+  margin: 2px;
+}
+.userPanel {
+  display: inline-block;
+  margin: 10px;
+  padding: 5px;
+  border: 2px solid black;
+  border-radius: 10px;
+}
+.userEmail {
+  font-family: fantasy;
+  font-style: italic;
+}
+.btn {
+  padding: 5px;
+  height: 30px;
+}
+.todoText {
+  display: inline-block;
+  width: 80%;
+  font-family: 'Times New Roman';
+  font-weight: bold;
+  font-size: 20px;
+  word-wrap: break-word;
+
+  margin-left: 10px;
+}
+.custom-checkbox {
+  position: relative;
+  top: 5px;
+  width: 20px;
+  height: 20px;
+}
+.inputAddTodoText {
+  margin: 5px;
+  border-radius: 20px;
+}
+.leftDiv {
+  position: absolute;
+  display: inline-block;
+  width: 25%;
+  height: 100%;
+}
+.rightDiv {
+  position: absolute;
+  display: inline-block;
+  width: 25%;
+  height: 100%;
+
+  margin-left: 75%;
+}
+.centerDiv {
+  position: absolute;
+  display: inline-block;
+  width: 50%;  
+  height: 100%;
+  background-color: burlywood; 
+
+  margin-left: 25%;
+}
+.loadingDiv {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+  background-color: dimgray;
+  text-align: center;
+}
+.loadingDiv span {
+  position: absolute;
+  display: inline-block;
+
+  width: 300px;
+  height: 100px;
+  
+  top: 50%;
+  left: 50%;
+  margin-top: -50px;
+  margin-left: -150px;
+
+  font-size: 72px;
+  font-weight: bold;
 }

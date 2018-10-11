@@ -15,38 +15,45 @@ class Todo extends Component {
 
   render() {
     return ( 
-      <li>
+      <li className="m-2">
         {!this.state.isRename ?
           <div>
             <input 
+              className="custom-checkbox float-left"
               onClick={this.onClick}
               type="checkbox"
               defaultChecked={this.props.completed}
             />
-            <span>{this.props.text}</span>
+            <span className="todoText">
+              {this.props.text}
+            </span>
             <input 
-              onClick={this.toggleRename}
-              type="button"
-              defaultValue="..." 
-            />
-            <input 
+              className="btn btn-danger m-1 float-right"
               onClick={this.onDeleteTodo}
               type="button"
               defaultValue="X" 
             />
+            <input 
+              className="btn btn-warning m-1 float-right"
+              onClick={this.toggleRename}
+              type="button"
+              defaultValue="..." 
+            />
           </div> :
           <div>
+            <input 
+              className="btn btn-info m-1 float-right"
+              onClick={this.onApply}
+              type="button"
+              defaultValue="OK" 
+            />
             <input 
               type="text" 
               defaultValue={this.props.text} 
               ref={this.input}
             />
             <input 
-              onClick={this.onApply}
-              type="button"
-              defaultValue="OK" 
-            />
-            <input 
+              className="btn btn-warning m-1 float-right"
               onClick={this.toggleRename}
               type="button"
               defaultValue="X" 

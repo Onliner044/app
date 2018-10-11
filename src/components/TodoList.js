@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import TodoContainer from '../containers/TodoContainer';
 
 const TodoList = ({todos}) => (
-  <ul>
+  <ul className="list-unstyled">
     {todos.map(todo =>
       <TodoContainer
         key={todo.id}

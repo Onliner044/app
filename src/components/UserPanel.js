@@ -2,26 +2,34 @@ import React from 'react';
 
 import { logOut, deleteAccount } from '../helpers/firebase/accountFunctions';
 import { auth } from '../helpers/firebase/init';
-import '../style.css';
+import Dropdown from './Dropdown';
 
 const UserPanel = () => {
     return (
       <div className="userPanel">
-        <ul>
+        <ul className="list-unstyled">
             <li>
-                Ваша почта:{auth.currentUser.email}
+                Ваша почта:<span className="userEmail">{auth.currentUser.email}</span>
             </li>
             <li>
                 <input 
+                    className="btn btn-primary"
                     onClick={logOut}
                     type="button"
                     defaultValue="Выйти"
                 />
-                <input 
-                    onClick={deleteAccount}
-                    type="button"
-                    defaultValue="Удалить аккаунт"
-                />
+                <Dropdown
+                    text=""
+                    textHide="Еще...↓"
+                    textShow="Скрыть←"
+                >    
+                    <input 
+                        className="btn btn-danger"
+                        onClick={deleteAccount}
+                        type="button"
+                        defaultValue="Удалить аккаунт"
+                    />
+                </Dropdown>
             </li>
             {!auth.currentUser.emailVerified ?
             <li>

@@ -5,8 +5,8 @@ import RegistrationContainer from '../containers/RegistrationContainer';
 
 const Verification = ({isLogin, onToggleVerification}) => {
     return (
-        <div>
-            <input 
+        <div className="centerVerification border border-dark">
+            <input className="toggleBtn btn-dark"
                 onClick={onToggleVerification} 
                 type="button"
                 defaultValue= {isLogin ? 

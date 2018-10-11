@@ -54,3 +54,21 @@ export const renameTodoInDatabase = (id, text) => {
 
     childTodo.child(TEXT).set(text);
 }
+
+export const lastIndexTodo = (callBack) => {
+    database.ref(`${USERS}/${auth.currentUser.uid}/${TODOS}`)
+        .once('value', (data) => {
+            const val = data.val();
+
+            let maxId = 0;
+            for (const key in val) {
+                const el = val[key];
+
+                if (el.id > maxId) {
+                    maxId = el.id;
+                }
+            }
+
+            callBack(maxId);
+        });
+}

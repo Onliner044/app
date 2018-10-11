@@ -7,10 +7,16 @@ import { isEmailVerified } from '../helpers/firebase/verificationFunctions';
 const Content = () => {
     return (
         <div>
-            <UserPanel />
-            {isEmailVerified() ? 
-            <TodoAppContainer /> :
-            null}
+            <div className="leftDiv">
+            </div>
+            <div className="centerDiv">
+                {isEmailVerified() ? 
+                <TodoAppContainer /> :
+                null}
+            </div>
+            <div className="rightDiv">
+                <UserPanel />
+            </div>
         </div>
     )
 }

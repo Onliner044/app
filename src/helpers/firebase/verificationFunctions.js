@@ -81,7 +81,7 @@ export const getAutoVerificationMethodOfType = (type) => {
                         );
                     },
                     () => {
-                        console.log('ошибка проверки e-mail');
+                        console.log('данный e-mail уже существует');
                     } 
                 );
             },

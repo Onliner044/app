@@ -18,8 +18,8 @@ const Registration = ({info, setInfo}) => {
     }
     
     return (
-        <div className="verification">
-            <ul>
+        <div>
+            <ul className="text-center list-inputs list-unstyled mt-4">
                 <li>
                     <input 
                         type="email" 
@@ -46,6 +46,7 @@ const Registration = ({info, setInfo}) => {
                 </li>
                 <li>
                     <input 
+                        className="btn btn-info mt-1"
                         type="button" 
                         onClick={onRegistration} 
                         defaultValue="Зарегистрироваться"

@@ -2,17 +2,20 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { addTodo } from '../helpers/actions/index';
-import { addTodoInDatabase } from '../helpers/firebase/databaseFunctions';
+import { addTodoInDatabase, lastIndexTodo } from '../helpers/firebase/databaseFunctions';
 
-const AddTodo = ({addTodo, lastIdTodo}) => {
+const AddTodo = ({addTodo}) => {
   const refInput = React.createRef();
+  let lastIdTodo;
+
+  lastIndexTodo((lastId) => lastIdTodo = lastId);
 
   const onClick = () => {
     if (!refInput.current.value.trim()) {
       return;
     }
 
-    addTodo(refInput.current.value, lastIdTodo);
+    addTodo(refInput.current.value, lastIdTodo += 1); //пока без ++ или += не обойтись
     addTodoInDatabase({
       id: lastIdTodo,
       text: refInput.current.value,
@@ -23,9 +26,13 @@ const AddTodo = ({addTodo, lastIdTodo}) => {
   }
 
   return (
-    <div>
-      <input ref={refInput} />
+    <div className="text-center">
+      <input 
+        className="inputAddTodoText"
+        ref={refInput}   
+      />
       <input
+        className="btn btn-success"
         onClick={onClick} 
         type="button" 
         defaultValue="Add Todo"
@@ -35,7 +42,6 @@ const AddTodo = ({addTodo, lastIdTodo}) => {
 }
 
 const mapStateToProps = (state) => ({
-  lastIdTodo: state.todos.length
 })
 
 const mapDispatchToProps = (dispatch) => ({
