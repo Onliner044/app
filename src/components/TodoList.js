@@ -1,17 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import TodoContainer from '../containers/TodoContainer';
+import TodoContainer from '../containers/TodoContainer'
 
-const TodoList = ({todos}) => (
-  <ul className="list-unstyled">
-    {todos.map(todo =>
+const TodoList = ({ todos }) => (
+  <div>
+    {todos.map(todo => (
       <TodoContainer
         key={todo.id}
         {...todo}
       />
-    )}
-  </ul>
+    ))}
+  </div>
 )
 
 TodoList.propTypes = {
@@ -21,7 +21,7 @@ TodoList.propTypes = {
       completed: PropTypes.bool.isRequired,
       text: PropTypes.string.isRequired
     }).isRequired
-  ).isRequired,
+  ).isRequired
 }
 
-export default TodoList;
+export default TodoList

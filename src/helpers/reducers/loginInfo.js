@@ -1,12 +1,12 @@
-import * as consts from '../actions/const';
+import * as consts from '../actions/const'
 
 const loginInfo = (state = '', action) => {
-    switch (action.type) {
-        case consts.SET_LOGIN_INFO:
-            return action.info;
-    }
+  switch (action.type) {
+    case consts.SET_LOGIN_INFO:
+      return action.info
+  }
 
-    return state;
+  return state
 }
 
-export default loginInfo;
+export default loginInfo

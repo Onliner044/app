@@ -1,42 +1,46 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React from 'react'
+import { connect } from 'react-redux'
 
-import { addTodo } from '../helpers/actions/index';
-import { addTodoInDatabase, lastIndexTodo } from '../helpers/firebase/databaseFunctions';
+import { addTodo } from '../helpers/actions/index'
+import { addTodoInDatabase, lastIndexTodo } from '../helpers/firebase/databaseFunctions'
+import info from '../helpers/info';
 
-const AddTodo = ({addTodo}) => {
-  const refInput = React.createRef();
-  let lastIdTodo;
+const AddTodo = ({ addTodo }) => {
+  const refInput = React.createRef()
+  let lastIdTodo
 
-  lastIndexTodo((lastId) => lastIdTodo = lastId);
+  lastIndexTodo((lastId) => {
+    lastIdTodo = lastId
+  })
 
   const onClick = () => {
     if (!refInput.current.value.trim()) {
-      return;
+      return
     }
 
-    addTodo(refInput.current.value, lastIdTodo += 1); //пока без ++ или += не обойтись
+    addTodo(refInput.current.value, lastIdTodo += 1) // пока без ++ или += не обойтись
     addTodoInDatabase({
       id: lastIdTodo,
       text: refInput.current.value,
       completed: false
-    });
+    })
 
-    refInput.current.value = '';
+    refInput.current.value = ''
   }
 
   return (
-    <div className="text-center">
-      <input 
-        className="inputAddTodoText"
-        ref={refInput}   
-      />
+    <div className="text-center m-2">
       <input
-        className="btn btn-success"
-        onClick={onClick} 
-        type="button" 
-        defaultValue="Add Todo"
+        className="inputAddTodoText"
+        ref={refInput}
       />
+      <a
+        onClick={onClick}
+        className="addTodo btn btn-info"
+      >
+        Добавить строку
+        <img src={info.addTodoImage} />
+      </a>
     </div>
   )
 }
@@ -51,4 +55,4 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(AddTodo);
+)(AddTodo)

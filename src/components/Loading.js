@@ -15,7 +15,7 @@ class Loading extends Component {
     render() {
         return (
             ReactDOM.createPortal(
-                <div className="loadingDiv">
+                <div className="center loadingDiv">
                     <span>
                         {`${this.text}${this.state.points}`}
                     </span>

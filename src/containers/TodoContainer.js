@@ -1,7 +1,7 @@
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'
 
-import Todo from '../components/Todo';
-import { deleteTodo, applyRename, toggleTodo } from '../helpers/actions/index';
+import Todo from '../components/Todo'
+import { deleteTodo, applyRename, toggleTodo } from '../helpers/actions/index'
 
 const mapStateToProps = (state) => ({
 })
@@ -13,6 +13,6 @@ const mapDispatchToProps = (dispatch) => ({
 })
 
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(Todo);
+  mapStateToProps,
+  mapDispatchToProps
+)(Todo)

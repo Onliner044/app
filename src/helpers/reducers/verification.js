@@ -1,12 +1,12 @@
-import { SET_VERIFICATION } from '../actions/const';
+import { SET_VERIFICATION } from '../actions/const'
 
 const verification = (state = false, action) => {
-    switch (action.type) {
-        case SET_VERIFICATION:
-            return !state;
-    }
+  switch (action.type) {
+    case SET_VERIFICATION:
+      return !state
+  }
 
-    return state;
+  return state
 }
 
-export default verification;
+export default verification

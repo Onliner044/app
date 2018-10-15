@@ -1,17 +1,18 @@
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 
-import Registration from '../components/Registration';
-import { setRegistrationInfo } from '../helpers/actions/index';
+import Registration from '../components/Registration'
+import { setRegistrationErrorInfo } from '../helpers/actions/index'
 
 const mapStateToProps = (state) => ({
-  info: state.registrationInfo
+  errorInfo: state.registrationInfo
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  setInfo: (info) => dispatch(setRegistrationInfo(info))
+  setErrorInfo: (info) => dispatch(setRegistrationErrorInfo(info))
 })
 
 export default connect(
-    mapStateToProps, 
-    mapDispatchToProps
-)(Registration);
+  mapStateToProps,
+  mapDispatchToProps
+)(Registration)

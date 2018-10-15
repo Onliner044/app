@@ -1,17 +1,17 @@
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'
 
-import Login from '../components/Login';
-import { setLoginInfo } from '../helpers/actions/index';
+import Login from '../components/Login'
+import { setLoginErrorInfo } from '../helpers/actions/index'
 
 const mapStateToProps = (state) => ({
-  info: state.loginInfo
+  errorInfo: state.loginInfo
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  setInfo: (info) => dispatch(setLoginInfo(info))
+  setErrorInfo: (info) => dispatch(setLoginErrorInfo(info))
 })
 
 export default connect(
-    mapStateToProps, 
-    mapDispatchToProps
-)(Login);
+  mapStateToProps,
+  mapDispatchToProps
+)(Login)

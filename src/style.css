@@ -2,13 +2,12 @@ body {
   margin: 0px;
   padding: 0px;
   font-family: sans-serif;
-
-  background-color: dimgray;
+  /*overflow: hidden;*/
 }
 .autoVerification {
   width: 25px;
   height: 25px;
-  margin-top: 30px;
+  margin-top: 25px;
 }
 .redText {
   color: red;
@@ -16,90 +15,103 @@ body {
 .redBorder {
   border: 1px solid red;
 }
-.centerVerification {
-  position: absolute;
+.verification {
+  position: fixed;
+  
+  width: 100%;
+  height: 100%;
+  
+  background-image: url("https://million-wallpapers.ru/wallpapers/4/43/349344015185855.jpg");  
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.center {
+  display: flex;
 
-  height: 300px;
-  width: 500px;
+  align-items: center;
+  justify-content: center;
+}
+.dark {
+  background-color: rgba(0, 0, 0, 0.35);
+}
+.verificationForm {
+  width: 700px;
+  height: 650px;
+  
+  border-radius: 6px;
+  background-color: rgba(50, 50, 50, 0.5);
+}
+.verificationForm .headerText {
+  color: antiquewhite;
+  padding-top: 30px;
+  padding-left: 15px;
+}
+.verificationForm .header {
+  height: 30%;
 
-  left: 50%;
-  top: 50%;
-  margin-left: -250px;
-  margin-top: -150px;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  background-color: rgba(50, 50, 50, 0.18);
 }
-.toggleBtn {
-  position: relative;
-  width: 300px;
-  left: 50%;
-  margin-left: -150px;
+.verifivationFrom .content {
+  height: 50%;
 }
-.border {
-  padding: 20px;
-  border-radius: 30px;
+.verificationForm .bottom {
+  height: 20%;
 }
-.list-inputs input[type=email],[type=password] {
-  border-radius: 12px;
-  color: #222222;
-  background-color: darkgray;
-  margin: 2px;
+.listVerificationInputs li {
+  margin: 20px;
 }
-.userPanel {
-  display: inline-block;
+.listVerificationInputs li input {
+  width: 100%;
+  height: 50px;
+
+  padding-left: 25px;
+
+  border-radius: 5px;
+}
+.littleImg {
   margin: 10px;
-  padding: 5px;
-  border: 2px solid black;
-  border-radius: 10px;
+
+  width: 100px;
+  height: 100px;
+}
+.darkText {
+  color: darkgray;
+}
+.verificationBottomBtn {
+  margin: 20px;
+
+  height: 50px;
+  width: 250px;
+
+  border-radius: 5px;
+  background-color: #5566FF;
+  color: antiquewhite;
+  text-align: center;
 }
 .userEmail {
   font-family: fantasy;
   font-style: italic;
 }
-.btn {
-  padding: 5px;
-  height: 30px;
-}
 .todoText {
-  display: inline-block;
-  width: 80%;
   font-family: 'Times New Roman';
   font-weight: bold;
   font-size: 20px;
   word-wrap: break-word;
-
-  margin-left: 10px;
+}
+.todoButton {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
 }
 .custom-checkbox {
-  position: relative;
-  top: 5px;
   width: 20px;
   height: 20px;
 }
 .inputAddTodoText {
   margin: 5px;
-  border-radius: 20px;
-}
-.leftDiv {
-  position: absolute;
-  display: inline-block;
-  width: 25%;
-  height: 100%;
-}
-.rightDiv {
-  position: absolute;
-  display: inline-block;
-  width: 25%;
-  height: 100%;
-
-  margin-left: 75%;
-}
-.centerDiv {
-  position: absolute;
-  display: inline-block;
-  width: 50%;  
-  height: 100%;
-  background-color: burlywood; 
-
-  margin-left: 25%;
+  border-radius: 5px;
 }
 .loadingDiv {
   position: fixed;
@@ -107,20 +119,95 @@ body {
   height: 100%;
   z-index: 999;
   background-color: dimgray;
-  text-align: center;
 }
 .loadingDiv span {
-  position: absolute;
-  display: inline-block;
-
   width: 300px;
   height: 100px;
   
-  top: 50%;
-  left: 50%;
-  margin-top: -50px;
-  margin-left: -150px;
-
   font-size: 72px;
   font-weight: bold;
+}
+.full {
+  position: absolute;
+
+  width: 100%;
+  height: 100%;
+}
+.todo {
+  padding: 20px;
+  margin-bottom: 15px;
+}
+.backgroundTodo {
+  position: fixed;
+
+  overflow-y: scroll;
+  
+  width: 100%;
+  height: 100%;
+
+  background-image: url("http://metronom-dance.ru/wp-content/uploads/White-Background.jpg");
+}
+.todo .header {
+  height: 10%;
+}
+.todoList {
+  position: relative;
+  
+  border: 1px solid #557766;
+  box-shadow: 0px 0px 0.2px #557766;
+  border-radius: 4px;
+}
+.todoList li {
+  justify-items: center; 
+
+  min-height: 40px;
+  text-align: center;
+}
+a img {
+  width: 15px;
+  height: 15px;
+
+  margin-left: 5px;
+}
+.inline {
+  display: flex;
+  justify-content: space-between;
+}
+.bigLength {
+  flex-grow: 1;  
+}
+.todoItems {
+  margin-right: 40px;
+  margin-left: 50px;
+}
+.bottom {
+  position: relative;
+
+  width: 100%;
+
+  bottom: 0px;
+  text-align: center;
+}
+.buttonNextListTodo {
+  margin: 2px;
+
+  width: 20px;
+  height: 30px;
+}
+.maxzIndex {
+  z-index: 1000;
+}
+.z-0 {
+  z-index: 0;
+}
+.selected {
+  background-color: lavender;
+}
+.resetPassword {
+  width: 300px;
+  height: 200px;
+
+  background-color: bisque;
+
+  z-index: 200;
 }

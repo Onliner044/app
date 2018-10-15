@@ -1,49 +1,48 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component, Fragment } from 'react'
 
-import Content from './components/Content';
-import VerificationContainer from './containers/VerificationContainer';
-import { userValidation } from './helpers/firebase/verificationFunctions';
-
-import Loading from './components/Loading';
+import ContentContainer from './containers/ContentContainer'
+import VerificationContainer from './containers/VerificationContainer'
+import { userValidation } from './helpers/firebase/verificationFunctions'
+import Loading from './components/Loading'
 
 class App extends Component {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
 
     this.state = {
       isUserLogin: false,
       isLoading: true
     }
   }
-  
-  render() {
+
+  render () {
     return (
       <Fragment>
-        {this.state.isLoading ?
-        <Loading /> :
-        null}
-        {this.state.isUserLogin ?
-        <Content /> :
-        <VerificationContainer />}
+        {this.state.isLoading
+          ? <Loading />
+          : null}
+        {this.state.isUserLogin
+          ? <ContentContainer />
+          : <VerificationContainer />}
       </Fragment>
     )
   }
-  
-  componentWillMount() {
+
+  componentWillMount () {
     userValidation(
       (user) => {
         if (user) {
           this.setState({
-            isUserLogin: true,
-          });
+            isUserLogin: true
+          })
         }
 
         this.setState({
           isLoading: false
-        });
+        })
       }
-    );
+    )
   }
 }
 
-export default App;
+export default App
