@@ -1,38 +1,47 @@
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 
-import TodoList from '../components/TodoList'
-import { SHOW_ACTIVE, SHOW_ALL, SHOW_COMPLETED, SHOW_NONE } from '../helpers/actions/const'
+import TodoList from '../components/TodoList';
+import {
+  SHOW_ACTIVE, SHOW_ALL, SHOW_COMPLETED,
+} from '../helpers/actions/const';
 
 export const getVisibleTodos = (todos, filter) => {
   switch (filter) {
     case SHOW_ALL:
-      return todos
+      return todos;
     case SHOW_COMPLETED:
-      return todos.filter(t => t.completed)
+      return todos.filter(t => t.completed);
     case SHOW_ACTIVE:
-      return todos.filter(t => !t.completed)
-    case SHOW_NONE:
-      return []
+      return todos.filter(t => !t.completed);
     default:
-      throw new Error('Unknown filter: ' + filter)
+      throw new Error(`Unknown filter: ${filter}`);
   }
-}
+};
 
-const filterTodos = (todos, list) => {
-  const count = list * 10
-  return todos.filter((todo, i) => {
-    return i >= count - 10 && i < count
-  })
-}
+export const filterTodos = (todos, list) => {
+  const count = list * 10;
+  return todos.filter((todo, i) => i >= count - 10 && i < count);
+};
+
+export const findTodos = (todos, val, isExact) => {
+  if (val === '') {
+    return todos;
+  }
+
+  if (!isExact) {
+    return todos.filter(todo => todo.text.indexOf(val) !== -1);
+  }
+  return todos.filter(todo => todo.text === val);
+};
 
 const mapStateToProps = state => ({
-  todos: filterTodos(getVisibleTodos(state.todos, state.visibilityFilter), state.list)
-})
+  todos: getVisibleTodos(state.todos.data, state.visibilityFilter),
+});
 
 const mapDispatchToProps = dispatch => ({
-})
+});
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
-)(TodoList)
+  mapDispatchToProps,
+)(TodoList);

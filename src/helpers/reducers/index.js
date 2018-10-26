@@ -1,12 +1,12 @@
-import { combineReducers } from 'redux'
+import { combineReducers } from 'redux';
 
-import todos from './todos'
-import visibilityFilter from './visibilityFilter'
-import verification from './verification'
-import registrationInfo from './registrationInfo'
-import loginInfo from './loginInfo'
-import filterTodos from './filterTodos'
-import list from './list'
+import todos from './todos';
+import visibilityFilter from './visibilityFilter';
+import verification from './verification';
+import registrationInfo from './registrationInfo';
+import loginInfo from './loginInfo';
+import list from './list';
+import findTodoText from './findTodoText';
 
 export default combineReducers({
   todos,
@@ -14,6 +14,6 @@ export default combineReducers({
   verification,
   registrationInfo,
   loginInfo,
-  filterTodos,
-  list
-})
+  list,
+  findTodoText,
+});

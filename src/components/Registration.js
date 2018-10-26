@@ -1,24 +1,34 @@
-import React, { Fragment } from 'react'
+import React, { Fragment } from 'react';
 
-import { registration } from '../helpers/firebase/verificationFunctions'
+import { registration } from '../helpers/verificationFunctions';
 
-const Registration = ({ errorInfo, setErrorInfo, buttonClassName, errorTextClassName }) => {
-  const refEmail = React.createRef()
-  const refPassword = React.createRef()
-  const refConfirmPassword = React.createRef()
+const Registration = ({ errorInfo, setErrorInfo }) => {
+  let errorTextClassName = 'redText';
+  const refLogin = React.createRef();
+  const refEmail = React.createRef();
+  const refPassword = React.createRef();
+  const refConfirmPassword = React.createRef();
 
   const onRegistration = () => {
     registration({
+      elLogin: refLogin.current,
       elEmail: refEmail.current,
       elPassword: refPassword.current,
-      elConfirmPassword: refConfirmPassword.current
+      elConfirmPassword: refConfirmPassword.current,
     },
-    setErrorInfo
-    )
-  }
+    setErrorInfo);
+  };
 
   return (
     <Fragment>
+    <li>
+      <input
+        type="text"
+        placeholder="Имя"
+        ref={refLogin}
+      />
+      <span className={errorTextClassName}>{errorInfo.infoLogin}</span>
+    </li>
       <li>
         <input
           type="email"
@@ -45,19 +55,14 @@ const Registration = ({ errorInfo, setErrorInfo, buttonClassName, errorTextClass
       </li>
       <li>
         <input
-          className={buttonClassName}
+          className="btn btn-info"
           type="button"
           onClick={onRegistration}
           defaultValue="Зарегистрироваться"
         />
       </li>
     </Fragment>
-  )
-}
+  );
+};
 
-Registration.defaultProps = {
-  buttonClassName: 'btn btn-info',
-  errorTextClassName: 'redText'
-}
-
-export default Registration
+export default Registration;

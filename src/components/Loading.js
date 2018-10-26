@@ -2,54 +2,54 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
 class Loading extends Component {
-    constructor(props) {
-        super(props);
+  constructor(props) {
+    super(props);
 
-        this.state = {
-            points: '.'
-        }
-        this.text = 'Loading';
-        this.isAnimated = true; 
+    this.state = {
+      points: '.',
+    };
+    this.text = 'Loading';
+    this.isAnimated = true;
+  }
+
+  render() {
+    return (
+      ReactDOM.createPortal(
+        <div className="center loadingDiv">
+          <span>
+            {`${this.text}${this.state.points}`}
+          </span>
+        </div>,
+        document.body,
+      )
+    );
+  }
+
+  animated = () => {
+    if (!this.isAnimated) {
+      return;
     }
 
-    render() {
-        return (
-            ReactDOM.createPortal(
-                <div className="center loadingDiv">
-                    <span>
-                        {`${this.text}${this.state.points}`}
-                    </span>
-                </div>,
-                document.body
-            )
-        );      
+    if (this.state.points.length <= 3) {
+      this.setState({
+        points: `${this.state.points}.`
+      });
+    } else {
+      this.setState({
+        points: '.'
+      });
     }
 
-    animated = () => {
-        if (!this.isAnimated) {
-            return;
-        }
+    setTimeout(this.animated, 500)
+  }
 
-        if (this.state.points.length <= 3) {
-            this.setState({
-                points: `${this.state.points}.`
-            });
-        } else {
-            this.setState({
-                points: '.'
-            });
-        }
+  componentDidMount() {
+    this.animated();
+  }
 
-        setTimeout(this.animated, 500);
-    }
-
-    componentDidMount() {
-        this.animated();
-    }
-
-    componentWillUnmount() {
-        this.isAnimated = false;
-    }
+  componentWillUnmount() {
+    this.isAnimated = false;
+  }
 }
 
 export default Loading;

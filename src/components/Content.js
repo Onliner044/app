@@ -1,32 +1,23 @@
-import React, { Component } from 'react'
+import React from 'react';
 
-import UserPanel from './UserPanel'
-import TodoAppContainer from '../containers/TodoAppContainer'
-import { isEmailVerified } from '../helpers/firebase/verificationFunctions'
-import ButtonList from './ButtonList'
+import UserPanel from './UserPanel';
+import TodoAppContainer from '../containers/TodoAppContainer';
+import '../styles/contentStyle.css';
 
-class Content extends Component {
-  render () {
-    return (
-      <div className="full backgroundTodo">
-        <div className="container mb-3">
-          <div className="row">
-            <div className="offset-3 col-6">
-              <h3 className="text-center">Todo list</h3>
-            </div>
-            <div className="col-3">
-              <UserPanel />
-            </div>
-          </div>
-          <div className="todoList">
-            {isEmailVerified()
-              ? <TodoAppContainer />
-              : null}
-          </div>
-        </div>
+const Content = () => (
+  <div className="content">
+    <div className="header">
+      <div className="d-table-cell col-4">
+        <span className="headerText">Todo App</span>
       </div>
-    )
-  }
-}
+      <div className="d-table-cell offset-5 col-3 pr-5">
+        <UserPanel />
+      </div>
+    </div>
+    <div className="bottom text-center">
+      <TodoAppContainer />
+    </div>
+  </div>
+);
 
-export default Content
+export default Content;

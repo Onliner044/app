@@ -1,23 +1,28 @@
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+import { compose } from 'redux';
 
-import TodoApp from '../components/TodoApp'
-import { getTodosInDatabase } from '../helpers/firebase/databaseFunctions'
-import { startTodos, setList } from '../helpers/actions/index'
+import TodoApp from '../components/TodoApp';
+import { getVisibleTodos } from './VisibleTodoList';
+import { todoListRequest } from '../helpers/saga/todoList';
+import injectSaga from '../helpers/utils/injectSaga';
+import { sagas } from '../helpers/saga/index';
 
 const mapStateToProps = (state) => ({
-  todos: state.todos,
-  filterTodos: state.filterTodos
+  todos: getVisibleTodos(state.todos.data, state.visibilityFilter)
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  setStartTodos: () => getTodosInDatabase(
-    (vals) => dispatch(startTodos(vals)),
-    () => console.log('ошибка при добавлении стартовых значений')
-  ),
-  setList: (list) => dispatch(setList(list))
+  todoListRequest: () => dispatch(todoListRequest()),
 })
 
-export default connect(
+const withConnect = connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
+);
+
+const withSaga = injectSaga({ key: 'todoList', saga: sagas});
+
+export default compose(
+  withConnect,
+  withSaga
 )(TodoApp)

@@ -1,18 +1,18 @@
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 
-import Todo from '../components/Todo'
-import { deleteTodo, applyRename, toggleTodo } from '../helpers/actions/index'
+import Todo from '../components/Todo';
+import { deleteTodoRequest } from '../helpers/saga/deleteTodo';
+import { replaceTodoRequest } from '../helpers/saga/replaceTodo';
 
-const mapStateToProps = (state) => ({
-})
+const mapStateToProps = state => ({
+});
 
-const mapDispatchToProps = (dispatch) => ({
-  toggleTodo: id => dispatch(toggleTodo(id)),
-  deleteTodo: (id) => dispatch(deleteTodo(id)),
-  applyRename: (id, text) => dispatch(applyRename(id, text))
-})
+const mapDispatchToProps = dispatch => ({
+  deleteTodo: title => dispatch(deleteTodoRequest(title)),
+  replaceTodo: (todo) => dispatch(replaceTodoRequest(todo)),
+});
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
-)(Todo)
+  mapDispatchToProps,
+)(Todo);

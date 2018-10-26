@@ -1,0 +1,47 @@
+.content {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+.content .header {
+  display: table;
+  position: relative;
+  width: 100%;
+  height: 30%;
+  background-color: rgb(255, 96, 109);
+}
+
+.content .header .d-table-cell {
+  vertical-align: middle;
+}
+
+.content .bottom {
+  position: relative;
+  height: 70%;
+  /*
+  background-image: url("http://metronom-dance.ru/wp-content/uploads/White-Background.jpg");
+  background-size: cover;
+  */
+}
+
+.content .headerText {
+  display: inline-block;
+  position: relative;
+  left: 20%;
+  color: beige;
+  font-size: 50px;
+}
+
+.content .todoList {
+  position: relative;
+
+  height: 100%;
+  width: 100%;
+}
+
+.userPanel {
+  margin-right: 20px;
+  vertical-align: middle;
+}

@@ -1,17 +1,17 @@
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 
-import Verification from '../components/Verification'
-import { setVerification } from '../helpers/actions/index'
+import Verification from '../components/Verification';
+import { setVerification } from '../helpers/actions/index';
 
-const mapStateToProps = (state) => ({
-  isLogin: state.verification
-})
+const mapStateToProps = state => ({
+  isLogin: state.verification,
+});
 
-const mapDispatchToProps = (dispatch) => ({
-  onToggleVerification: () => dispatch(setVerification())
-})
+const mapDispatchToProps = dispatch => ({
+  onToggleVerification: () => dispatch(setVerification()),
+});
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
-)(Verification)
+  mapDispatchToProps,
+)(Verification);

@@ -1,45 +1,31 @@
-import { START_TODOS, ADD_TODO, TOGGLE_TODO, DELETE_TODO, APPLY_RENAME } from '../actions/const'
+import { TODO_LIST_REQUEST, TODO_LIST_RESPONSE, TODO_LIST_FAILURE_RESPONSE } from '../saga/todoList';
 
-const todos = (state = [], action) => {
+const initialState = {
+  data: [],
+};
+export const todos = (state = initialState, action) => {
   switch (action.type) {
-    case START_TODOS:
-      return [].concat(action.todos)
-    case ADD_TODO:
-      return [
-        ...state,
-        {
-          id: action.id,
-          text: action.text,
-          completed: false
-        }
-      ]
-    case DELETE_TODO:
-      return state.filter((todo) => {
-        if (todo.id !== action.id) {
-          return todo
-        }
-      })
-    case APPLY_RENAME:
-      return state.map((todo) => {
-        if (todo.id === action.id) {
-          return {
-            id: todo.id,
-            text: action.text,
-            completed: todo.completed
-          }
-        }
-
-        return todo
-      })
-    case TOGGLE_TODO:
-      return state.map(todo =>
-        (todo.id === action.id)
-          ? { ...todo, completed: !todo.completed }
-          : todo
-      )
+    case TODO_LIST_REQUEST:
+      return state;
+      /*return {
+        data: [],
+      };*/
+    case TODO_LIST_RESPONSE:
+      const data = action.payload.map((todo) => ({
+        id: todo.todoName,
+        text: todo.task,
+        completed: todo.success
+      }));
+      return Object.assign({}, state, {
+        data: data,
+      });
+    case TODO_LIST_FAILURE_RESPONSE:
+      return {
+        data: action.payload,
+      };
     default:
-      return state
+      return state;
   }
-}
+};
 
-export default todos
+export default todos;

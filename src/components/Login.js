@@ -1,25 +1,27 @@
-import React, { Fragment } from 'react'
+import React, { Fragment } from 'react';
 
-import AutoLogin from './AutoLogin'
-import info from '../helpers/info'
-import { getAutoVerificationMethodOfType, signIn } from '../helpers/firebase/verificationFunctions'
+import AutoLogin from './AutoLogin';
+import info from '../helpers/info';
+import { signIn } from '../helpers/verificationFunctions';
 
-const Login = ({ errorInfo, setErrorInfo, buttonClassName, errorTextClassName }) => {
-  const refEmail = React.createRef()
-  const refPassword = React.createRef()
+const Login = ({
+  errorInfo, setErrorInfo, buttonClassName, errorTextClassName,
+}) => {
+  const refLogin = React.createRef();
+  const refPassword = React.createRef();
 
   const login = () => {
-    setErrorInfo('')
-    signIn(refEmail.current.value, refPassword.current.value, setErrorInfo)
-  }
+    setErrorInfo('');
+    signIn(refLogin.current.value, refPassword.current.value, setErrorInfo);
+  };
 
   return (
     <Fragment>
       <li>
         <input
-          type="email"
-          placeholder="E-mail"
-          ref={refEmail}
+          type="text"
+          placeholder="Логин"
+          ref={refLogin}
         />
       </li>
       <li>
@@ -41,22 +43,22 @@ const Login = ({ errorInfo, setErrorInfo, buttonClassName, errorTextClassName })
         />
       </li>
       <li className="text-center">
-        {info.autoVerification.verifications.map((el, i) => (
+        {/*info.autoVerification.verifications.map((el, i) => (
           <AutoLogin
             key={i}
             src={el.src}
-            onClick={getAutoVerificationMethodOfType(el.type)}
+            //onClick={getAutoVerificationMethodOfType(el.type)}
             type={el.type}
           />
-        ))}
+        ))*/}
       </li>
     </Fragment>
-  )
-}
+  );
+};
 
 Login.defaultProps = {
   buttonClassName: 'btn btn-info',
-  errorTextClassName: 'redText'
-}
+  errorTextClassName: 'redText',
+};
 
-export default Login
+export default Login;

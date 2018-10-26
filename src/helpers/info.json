@@ -1,12 +1,8 @@
 {
     "pencil": "http://prints.ultracoloringpages.com/b88818f9f79ac598e813f62c35a89380.png",
-    "autoVerification": {
-        "verifications": [
-            {
-                "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/1024px-Google_%22G%22_Logo.svg.png",
-                "type": "google"
-            }
-        ]
-    },
+    "pencil2": "https://icon-icons.com/icons2/1518/PNG/512/pencilmono_105944.png",
+    "ok": "https://ucarecdn.com/df004460-3710-490f-86fa-30ac52ef8a09/",
+    "cancel": "https://findicons.com/files/icons/2540/glyph_icons/32/delete.png",
+    "trash": "https://maxcdn.icons8.com/iOS7/PNG/100/Household/waste_filled-100.png",
     "addTodoImage": "http://d3recipes.appspot.com/static/img/plus_sign.png"
 }

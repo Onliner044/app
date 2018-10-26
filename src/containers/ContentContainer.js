@@ -1,7 +1,7 @@
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 
-import Content from '../components/Content'
-import { setList } from '../helpers/actions'
+import Content from '../components/Content';
+import { setList } from '../helpers/actions';
 
 const mapStateToProps = (state) => ({  
 })
@@ -13,4 +13,4 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Content)
+)(Content);

@@ -1,47 +1,47 @@
 import React, { Component } from 'react'
 
-import Footer from './Footer'
 import AddTodo from '../containers/AddTodo'
 import VisibleTodoList from '../containers/VisibleTodoList'
 import ButtonList from './ButtonList'
+import Filters from './Filters';
+import FiltersContainer from '../containers/FiltersContainer';
 
 class TodoApp extends Component {
   constructor (props) {
     super(props)
 
-    this.props.setStartTodos()
-    this.headers = ['Cостояние', 'Текст', 'Редактировать / Отменить', 'Удалить / Применить']
+    this.delButton = React.createRef()
+    this.props.todoListRequest()
   }
 
   render () {
     return (
-      <div>
-        <AddTodo />
-        <Footer />
-        <ul className="inline list-unstyled">
-          {this.headers.map((head, i) => {
-            let className = 'col-2'
-
-            if (i == 1) {
-              className = 'col-6'
-            }
-            return (
-              <li
-                className={`${className}`}
-                key={i}
-              >
-                {head}
-              </li>
-            )
-          })}
-        </ul>
+      <div className="todoApp">
+        <div className="row">
+          <AddTodo />
+          {/*<FindTodos
+            setFindText={this.props.setFindText}
+          />*/}
+        </div>
+        <div className="text-center">
+          <div className="hr d-inline-block"></div>
+        </div>
+        <FiltersContainer />
         <VisibleTodoList />
-        <div className="bottom">
+        {/*<div className="row bottom mt-3 mb-3">
+          
           <ButtonList
             setList={this.props.setList}
-            todos={this.props.filterTodos}
+            todos={this.props.todos}
           />
-        </div>
+          <input
+            className="btn btn-danger col-4"
+            onClick={this.onDelete}
+            type="button"
+            hidden
+            ref={this.delButton}
+          />
+        </div>*/}
       </div>
     )
   }

@@ -1,7 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 const AutoLogin = ({ src, onClick, type }) => {
-  const alt = `Войти с помощью ${type}`
+  const alt = `Войти с помощью ${type}`;
   return (
     <img
       className="autoVerification"
@@ -11,15 +11,15 @@ const AutoLogin = ({ src, onClick, type }) => {
       src={src}
       alt={alt}
     />
-  )
-}
+  );
+};
 
 const onMouseEnter = () => {
-  document.documentElement.style.cursor = 'pointer'
-}
+  document.documentElement.style.cursor = 'pointer';
+};
 
 const ononMouseOut = () => {
-  document.documentElement.style.cursor = 'default'
-}
+  document.documentElement.style.cursor = 'default';
+};
 
-export default AutoLogin
+export default AutoLogin;

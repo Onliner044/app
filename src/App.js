@@ -1,21 +1,21 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component, Fragment } from 'react';
 
-import ContentContainer from './containers/ContentContainer'
-import VerificationContainer from './containers/VerificationContainer'
-import { userValidation } from './helpers/firebase/verificationFunctions'
-import Loading from './components/Loading'
+import ContentContainer from './containers/ContentContainer';
+import VerificationContainer from './containers/VerificationContainer';
+import Loading from './components/Loading';
+import { existCookie } from './helpers/cookiesFunctions';
 
 class App extends Component {
-  constructor (props) {
-    super(props)
+  constructor(props) {
+    super(props);
 
     this.state = {
       isUserLogin: false,
-      isLoading: true
-    }
+      isLoading: true,
+    };
   }
 
-  render () {
+  render() {
     return (
       <Fragment>
         {this.state.isLoading
@@ -25,24 +25,20 @@ class App extends Component {
           ? <ContentContainer />
           : <VerificationContainer />}
       </Fragment>
-    )
+    );
   }
 
-  componentWillMount () {
-    userValidation(
-      (user) => {
-        if (user) {
-          this.setState({
-            isUserLogin: true
-          })
-        }
+  componentWillMount() {    
+    if (existCookie('Authorization')) {
+      this.setState({
+        isUserLogin: true,
+      });
+    }
 
-        this.setState({
-          isLoading: false
-        })
-      }
-    )
+    this.setState({
+      isLoading: false,
+    });
   }
 }
 
-export default App
+export default App;

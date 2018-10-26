@@ -1,0 +1,125 @@
+.todoApp {
+  margin-bottom: 20px;
+}
+
+.todoApp .inputTodoText {
+  position: relative;
+  width: 100%;
+  height: 40px;
+  border: 1px solid #dddddd;
+  border-radius: 5px;
+  color: #6b6b6b;
+  padding-left: 15px;
+}
+
+.todoApp .buttonAddTodo {
+  height: 40px;
+
+  background-color: white;
+  border: 1px solid #5bbdff;
+  border-radius: 5px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color: #5bbdff;
+}
+
+.todoApp .hr {
+  border: 0.5px solid #f1f1f1;
+  width: 70%;
+  margin: 20px;
+}
+
+.todoApp .todoCheckBox {
+  width: 40px;
+  height: 40px;
+  background-color: #f1f1f1;
+
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.todoApp .todoCheckBox input {
+  display: none;
+  width: 15px;
+  height: 15px;
+}
+
+.todoApp .custom-checkBox label {
+  margin-top: 15px;
+  width: 12px;
+  height: 12px;
+  background: linear-gradient(#dddddd, white);
+  border: 1px solid #9c9c9c;
+  border-radius: 3px;
+}
+
+.todoApp .custom-checkBox label:active {
+  background: linear-gradient(#c0c0c0, white);
+}
+
+.todoApp .custom-checkBox label::before {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  content: '';
+}
+
+.todoApp .todoCheckBox input:checked + label::before {
+  position: relative;
+  top: -6px;
+  left: -1px;
+  background-image: url("https://iphone.giveawayoftheday.com/wp-content/plugins/gotd_appstore_plugin/images/2014/07/793053928_app_icon_big_1441380020.jpg");
+  background-size: contain;
+  border: 1px solid #9c9c9c;
+  border-radius: 3px;
+}
+
+.todoApp .todoText {
+  position: relative;
+  width: 100%;
+  min-height: 40px;
+  background-color: white;
+  word-wrap: break-word;
+  font-size: 18px;
+  font-family: Arial;
+  text-align: left;
+  padding-left: 10px;
+  padding-top: 6px;
+  margin-right: -1px;
+}
+
+.todoApp .border-bottom-left-up {
+  border-bottom: 1px solid #dddddd;
+  border-left: 1px solid #dddddd;
+  border-top: 1px solid #dddddd;
+}
+
+.todoApp .border-right {
+  border-right: 1px solid #dddddd;
+}
+
+.todoApp .todoButton {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #dddddd; 
+}
+
+.todoApp .border-top-bottom-right-radius {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px; 
+}
+
+.todoApp .border-right {
+  border-top: 1px solid #dddddd;
+}
+
+.todoApp .todos li {
+  margin-top: 10px;
+  vertical-align: middle;
+}
+
+.todoApp .todos img {
+  width: 17px;
+  height: 17px;
+  margin-top: 10px;
+  margin-left: 2px;
+}
