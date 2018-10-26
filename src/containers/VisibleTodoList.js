@@ -18,22 +18,6 @@ export const getVisibleTodos = (todos, filter) => {
   }
 };
 
-export const filterTodos = (todos, list) => {
-  const count = list * 10;
-  return todos.filter((todo, i) => i >= count - 10 && i < count);
-};
-
-export const findTodos = (todos, val, isExact) => {
-  if (val === '') {
-    return todos;
-  }
-
-  if (!isExact) {
-    return todos.filter(todo => todo.text.indexOf(val) !== -1);
-  }
-  return todos.filter(todo => todo.text === val);
-};
-
 const mapStateToProps = state => ({
   todos: getVisibleTodos(state.todos.data, state.visibilityFilter),
 });

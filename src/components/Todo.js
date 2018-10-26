@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from 'react';
+
+import { Grid } from '@material-ui/core';
 import info from '../helpers/info';
 import Confirm from './Confirm';
-import { Grid } from '@material-ui/core';
 
 class Todo extends Component {
   constructor(props) {
@@ -11,39 +12,39 @@ class Todo extends Component {
       isRename: false,
       isDeleted: false
     };
-    this.input = React.createRef();
+    this.todoText = React.createRef();
 
-    this.checkBoxInput = () => (
+    this.checkBoxInput = (id, completed) => (
       <li className="d-inline-block text-center">
         <div className="todoCheckBox border-bottom-left-up">
           <div className="custom-checkBox">
             <input
               onClick={this.onToggle}
-              id={this.props.id}
+              id={id}
               type="checkbox"
-              defaultChecked={this.props.completed}
+              defaultChecked={completed}
             />
-            <label htmlFor={this.props.id}></label>
+            <label htmlFor={id}></label>
           </div>
         </div>
       </li>
     );
-    this.readOnlyTextInput = () => (
+    this.readOnlyTextInput = (text) => (
       <li className="d-inline-block todoText IEtodoText border-bottom-left-up border-right">
-        {this.props.text}
+        {text}
       </li>
     );
-    this.editTextInput = () => (
+    this.editTextInput = (text) => (
       <li className="d-inline-block w-100">
         <input
           className="todoText IEtodoText border-bottom-left-up darkText pb-1"
           type="text"
-          defaultValue={this.props.text}
-          ref={this.input}
+          defaultValue={text}
+          ref={this.todoText}
         />
       </li>
     );
-    this.editButton = (
+    this.editButton = (id) => (
       <li className="d-inline-block text-center">
         <div 
           className="btn-warning todoButton border-bottom-left-up"
@@ -51,7 +52,7 @@ class Todo extends Component {
         >
           <div className="h-100">
             <img 
-              id={`img${this.props.id}`}
+              id={`img${id}`}
               src={info.pencil2}
             />
           </div>
@@ -79,9 +80,7 @@ class Todo extends Component {
           onClick={this.toggleRename}
         >
           <div className="h-100">          
-            <img 
-              src={info.cancel}
-            />
+            <img src={info.cancel}/>
           </div>
         </div>
       </li>
@@ -93,9 +92,7 @@ class Todo extends Component {
           onClick={this.onApply}
         >
           <div className="h-100">
-            <img 
-              src={info.ok}
-            />
+            <img src={info.ok}/>
           </div>
         </div>
       </li>
@@ -103,68 +100,85 @@ class Todo extends Component {
   }
 
   render() {
+    const { id, completed } = this.props;
+
     return (
       <Fragment>
-        {this.state.isDeleted
-        ? <Confirm 
-            info="Удалить запись?"
-            applyText="Да"
-            rejectText="Нет"
-            okCallback={this.onDeleteTodo}
-            cancelCallback={this.toggleDelete}
-          />
-        : null}
+        {this.renderConfirm()}
         <Grid 
           container 
           className="todos"
           spacing={0}
         >
           <Grid item xs={2} sm={3} className="d-inline-block text-right">
-            {this.checkBoxInput()}
+            {this.checkBoxInput(id, completed)}
           </Grid>
-          {!this.state.isRename
-            ? (
-              <Fragment>
-                <Grid item xs={7} sm={5} className="d-inline-block">
-                  {this.readOnlyTextInput()}
-                </Grid>
-                <Grid item xs={3} sm={4} className="d-inline-block text-left">
-                  {this.editButton} 
-                  {this.deleteButton}
-                </Grid>
-              </Fragment>
-            )
-            : (
-              <Fragment>
-                <Grid item xs={7} sm={5} className="d-inline-block">
-                  {this.editTextInput()}
-                </Grid>
-                <Grid item xs={3} sm={4} className="d-inline-block text-left">
-                  {this.cancelButton}
-                  {this.applyButton}
-                </Grid>
-              </Fragment>
-            )
-          }
+          {this.renderReadOnlyOrEditTodo()}
         </Grid>
       </Fragment>
     );
   }
 
+  renderReadOnlyOrEditTodo = () => {
+    const { id, text } = this.props;
+
+    if (!this.state.isRename) {
+      return (
+        <Fragment>
+          <Grid item xs={7} sm={5} className="d-inline-block">
+            {this.readOnlyTextInput(text)}
+          </Grid>
+          <Grid item xs={3} sm={4} className="d-inline-block text-left">
+            {this.editButton(id)} 
+            {this.deleteButton}
+          </Grid>
+        </Fragment>
+      )
+    } else {
+      return (
+        <Fragment>
+          <Grid item xs={7} sm={5} className="d-inline-block">
+            {this.editTextInput(text)}
+          </Grid>
+          <Grid item xs={3} sm={4} className="d-inline-block text-left">
+            {this.cancelButton}
+            {this.applyButton}
+          </Grid>
+        </Fragment>
+      )
+    }
+  }
+
+  renderConfirm = () => {
+    if (this.state.isDeleted) {
+      return (
+        <Confirm 
+          info="Удалить запись?"
+          applyText="Да"
+          rejectText="Нет"
+          okCallback={this.onDeleteTodo}
+          cancelCallback={this.toggleDelete}
+        />
+      )
+    } else {
+      return null;
+    }
+  }
+
   onToggle = () => {
-    const {id, text, completed} = this.props;
+    const { id, text, completed } = this.props;
     const newTodo = {
       id,
       text,
       completed: !completed + ''
     }  
-    console.log(newTodo)
     this.props.replaceTodo(newTodo);
   }
 
   
   onDeleteTodo = () => {
-    this.props.deleteTodo(this.props.id);
+    const { id } = this.props;
+    this.props.deleteTodo(id);
   }
   
   onApply = () => {
@@ -172,22 +186,22 @@ class Todo extends Component {
     const newTodo = {
       id,
       completed,
-      text: this.input.current.value,
+      text: this.todoText.current.value,
     }  
     this.props.replaceTodo(newTodo);
     this.toggleRename();
   }
   
   toggleDelete = () => {
-    this.setState({
-      isDeleted: !this.state.isDeleted
-    })
+    this.setState((state) => ({
+      isDeleted: !state.isDeleted
+    }))
   }
 
   toggleRename = () => {
-    this.setState({
-      isRename: !this.state.isRename
-    })
+    this.setState((state) => ({
+      isRename: !state.isRename
+    }))
   }
 }
 

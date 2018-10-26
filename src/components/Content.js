@@ -6,7 +6,7 @@ import '../styles/contentStyle.css';
 
 const Content = () => (
   <div className="content">
-    <div className="header">
+    <div className="header row">
       <div className="d-table-cell col-4">
         <span className="headerText">Todo App</span>
       </div>

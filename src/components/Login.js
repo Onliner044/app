@@ -1,18 +1,16 @@
 import React, { Fragment } from 'react';
 
-import AutoLogin from './AutoLogin';
-import info from '../helpers/info';
 import { signIn } from '../helpers/verificationFunctions';
 
 const Login = ({
-  errorInfo, setErrorInfo, buttonClassName, errorTextClassName,
+  errorInfo, setError, buttonClassName, errorTextClassName,
 }) => {
   const refLogin = React.createRef();
   const refPassword = React.createRef();
 
   const login = () => {
-    setErrorInfo('');
-    signIn(refLogin.current.value, refPassword.current.value, setErrorInfo);
+    setError('');
+    signIn(refLogin.current.value, refPassword.current.value, setError);
   };
 
   return (
@@ -41,16 +39,6 @@ const Login = ({
           type="button"
           defaultValue="Войти"
         />
-      </li>
-      <li className="text-center">
-        {/*info.autoVerification.verifications.map((el, i) => (
-          <AutoLogin
-            key={i}
-            src={el.src}
-            //onClick={getAutoVerificationMethodOfType(el.type)}
-            type={el.type}
-          />
-        ))*/}
       </li>
     </Fragment>
   );

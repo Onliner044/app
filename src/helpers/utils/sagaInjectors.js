@@ -41,10 +41,6 @@ export function injectSagaFactory(store, isValid) {
       !hasSaga ||
       (hasSaga && mode !== DAEMON && mode !== ONCE_TILL_UNMOUNT)
     ) {
-      //////////////////////////////
-      console.log('saga', saga);
-      
-      ////////////////////////////////////////
       /* eslint-disable no-param-reassign */
       store.injectedSagas[key] = {
         ...newDescriptor,

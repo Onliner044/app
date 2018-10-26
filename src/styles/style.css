@@ -62,6 +62,15 @@ body {
   background-color: lavender;
 }
 
+.center {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.horizontal-center {
+  text-align: center;
+}
+
 .vertical-center {
   vertical-align: middle;
 }

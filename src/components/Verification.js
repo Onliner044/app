@@ -2,17 +2,17 @@ import React, { Component } from 'react';
 
 import LoginContainer from '../containers/LoginContainer';
 import RegistrationContainer from '../containers/RegistrationContainer';
-import ResetPassword from './ResetPassword';
 import info from '../helpers/info';
 import '../styles/verificationStyle.css';
+import Registration from './Registration';
 
 class Verification extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      isResetPassword: false,
-    };
+      isLogin: false
+    }
   }
 
   render() {
@@ -26,9 +26,7 @@ class Verification extends Component {
                   <div className="header">
                     <div className="headerText float-left">
                       <h2 className="mb-4">
-                        {this.props.isLogin
-                          ? 'Вход'
-                          : 'Регистрация'}
+                        {this.getText()}
                       </h2>
                       <h6 className="darkText pb-5">Введите свои корректные данные:</h6>
                     </div>
@@ -40,33 +38,15 @@ class Verification extends Component {
                     </div>
                   </div>
                   <ul className="listVerificationInputs list-unstyled">
-                    {this.props.isLogin
-                      ? <LoginContainer />
-                      : <RegistrationContainer />
-                      }
+                    {this.renderLoginOrRegistration()}
                   </ul>
                   <div className="bottom">
                     <input
                       className="verificationBottomBtn btn float-left"
-                      onClick={this.props.onToggleVerification}
+                      onClick={this.onToggleVerification}
                       type="button"
-                      defaultValue={this.props.isLogin
-                        ? 'Регистрация'
-                        : 'Вход'}
+                      defaultValue={this.getText()}
                     />
-                    <input
-                      className="verificationBottomBtn btn float-right"
-                      onClick={this.onClickResetPassword}
-                      type="button"
-                      defaultValue="Забыл пароль"
-                    />
-                    {this.state.isResetPassword
-                      ? (
-                        <ResetPassword
-                          onCancel={this.onCancel}
-                        />
-                      )
-                      : null}
                   </div>
                 </div>
               </div>
@@ -76,17 +56,27 @@ class Verification extends Component {
       </div>
     );
   }
-  
-  onClickResetPassword = () => {
-    this.setState({
-      isResetPassword: true
-    })
+
+  renderLoginOrRegistration = () => {
+    if (this.state.isLogin) {
+      return <LoginContainer />;
+    } else {
+      return <RegistrationContainer />;
+    }
   }
 
-  onCancel = () => {
-    this.setState({
-      isResetPassword: false
-    })
+  getText = () => {
+    if (this.state.isLogin) {
+      return 'Вход';
+    } else {
+      return 'Регистрация';
+    }
+  }
+
+  onToggleVerification = () => {
+    this.setState((state) => ({
+      isLogin: !state.isLogin
+    }))
   }
 }
 

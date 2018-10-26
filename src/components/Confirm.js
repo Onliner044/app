@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import { Grid } from '@material-ui/core';
 import '../styles/confirmStyle.css';
 
 const Confirm = ({ info, applyText, rejectText, okCallback, cancelCallback }) => {
@@ -8,31 +9,35 @@ const Confirm = ({ info, applyText, rejectText, okCallback, cancelCallback }) =>
     ReactDOM.createPortal(
       <div className="d-table full maxzIndex dark">
         <div className="d-table-cell align-middle text-center">
-        <div className="confirm">
-          <div className="header">
-            {info}
-          </div>
-          <div className="bottom">
-            <div className="row">
-              <div className="d-inline-block col-6">
-                <input 
-                  className="button btn btn-danger"
-                  type="button"
-                  onClick={okCallback}
-                  defaultValue={applyText}
-                />
-              </div>
-              <div className="d-inline-block col-6">
-                <input 
-                  className="button btn btn-lg"
-                  onClick={cancelCallback}
-                  type="button"
-                  defaultValue={rejectText}
-                />
-              </div>
+          <div className="confirm">
+            <div className="header">
+              {info}
+            </div>
+            <div className="bottom">
+              <Grid container direction="row">
+                <Grid item xs={6}>
+                  <div className="d-inline-block">
+                    <input 
+                      className="button btn btn-danger"
+                      type="button"
+                      onClick={okCallback}
+                      defaultValue={applyText}
+                    />
+                  </div>
+                </Grid>
+                <Grid item xs={6}>
+                  <div className="d-inline-block">
+                    <input 
+                      className="button btn btn-lg"
+                      onClick={cancelCallback}
+                      type="button"
+                      defaultValue={rejectText}
+                    />
+                  </div>
+                </Grid>
+              </Grid>
             </div>
           </div>
-        </div>
         </div>
       </div>,
       document.body

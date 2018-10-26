@@ -21,14 +21,14 @@ const Registration = ({ errorInfo, setErrorInfo }) => {
 
   return (
     <Fragment>
-    <li>
-      <input
-        type="text"
-        placeholder="Имя"
-        ref={refLogin}
-      />
-      <span className={errorTextClassName}>{errorInfo.infoLogin}</span>
-    </li>
+      <li>
+        <input
+          type="text"
+          placeholder="Имя"
+          ref={refLogin}
+        />
+        <span className={errorTextClassName}>{errorInfo.infoLogin}</span>
+      </li>
       <li>
         <input
           type="email"

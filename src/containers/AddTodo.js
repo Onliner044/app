@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import { Grid } from '@material-ui/core';
 import { addTodoRequest } from '../helpers/saga/addTodo';
 import '../styles/todoAppStyle.css';
-import { Grid } from '@material-ui/core';
 
 const AddTodo = ({ addTodo }) => {
   const refInput = React.createRef();

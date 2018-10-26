@@ -3,17 +3,28 @@ import PropTypes from 'prop-types'
 
 import TodoContainer from '../containers/TodoContainer'
 
-const TodoList = ({ todos }) => (
-  <div>
-    {todos.length > 0
-      ? todos.map(todo => (
-        <TodoContainer
-          key={todo.id}
-          {...todo}
-        />
-      )) : null}
-  </div>
-)
+const TodoList = ({ todos }) => {
+  const renderTodos = () => {
+    if (todos.length > 0) {
+      return (
+        todos.map(todo => (
+          <TodoContainer
+            key={todo.id}
+            {...todo}
+          />
+        ))
+      )
+    } else {
+      return null;
+    }
+  }
+
+  return (
+    <div>
+      {renderTodos()}
+    </div>
+  )
+}
 
 TodoList.propTypes = {
   todos: PropTypes.arrayOf(

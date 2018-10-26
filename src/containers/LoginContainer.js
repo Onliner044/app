@@ -8,7 +8,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  setErrorInfo: info => dispatch(setLoginErrorInfo(info)),
+  setError: info => dispatch(setLoginErrorInfo(info)),
 });
 
 export default connect(

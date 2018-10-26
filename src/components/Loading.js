@@ -15,36 +15,38 @@ class Loading extends Component {
   render() {
     return (
       ReactDOM.createPortal(
-        <div className="center loadingDiv">
-          <span>
-            {`${this.text}${this.state.points}`}
-          </span>
+        <div className="loadingDiv">
+          <div className="d-table w-100 h-100">
+            <span className="d-table-cell center">
+              {`${this.text}${this.state.points}`}
+            </span>
+          </div>
         </div>,
         document.body,
       )
     );
   }
 
-  animated = () => {
+  animateText = () => {
     if (!this.isAnimated) {
       return;
     }
 
     if (this.state.points.length <= 3) {
-      this.setState({
-        points: `${this.state.points}.`
-      });
+      this.setState((state) => ({
+        points: `${state.points}.`
+      }))
     } else {
       this.setState({
         points: '.'
       });
     }
 
-    setTimeout(this.animated, 500)
+    setTimeout(this.animateText, 500)
   }
 
   componentDidMount() {
-    this.animated();
+    this.animateText();
   }
 
   componentWillUnmount() {

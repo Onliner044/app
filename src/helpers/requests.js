@@ -31,7 +31,6 @@ export const request = (method, url, contentType = 'text/html', withCredentials 
       });
 
       alert('Ошибка!');
-      console.log(xhr.status, xhr.responseText);
     };
   });
 };

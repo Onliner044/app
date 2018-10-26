@@ -2,7 +2,7 @@ import { clearClass } from './cssFunctions';
 import { registrationXMLHTTPRequest, loginXMLHTTPRequest } from './requests';
 import { setCookie } from './cookiesFunctions';
 
-export const signIn = (login, password, setErrorInfo) => {
+export const signIn = (login, password, setError) => {
   loginXMLHTTPRequest(login, password).then(
     (value) => {
       try {
@@ -15,19 +15,17 @@ export const signIn = (login, password, setErrorInfo) => {
 
         document.location.reload();
       } catch (e) {
-        console.log(e);
+        alert('Ошибка при входе!');
       }
     },
   ).catch(
     (value) => {
       switch (value.status) {
         case 400:
-          setErrorInfo('Не правильный логин или пароль!');
-          console.log(value.status, value.responseText);
+          setError('Не правильный логин или пароль!');
           break;
         default:
           alert('Ошибка!');
-          console.log(value.status, value.responseText);
           break;
       }
     },
@@ -106,10 +104,8 @@ export const registration = (elements, setErrorInfo) => {
         try {
           const data = JSON.parse(value.responseText);
           alert(data.msg);
-          console.log('Ошибка регистрации', value.status, value.responseText);
         } catch(e) {
           alert('Ошибка!');
-          console.log(e);
         }
       },
     );

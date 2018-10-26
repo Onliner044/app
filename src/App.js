@@ -1,9 +1,9 @@
 import React, { Component, Fragment } from 'react';
 
-import ContentContainer from './containers/ContentContainer';
-import VerificationContainer from './containers/VerificationContainer';
+import Content from './components/Content';
+import Verification from './components/Verification';
 import Loading from './components/Loading';
-import { existCookie } from './helpers/cookiesFunctions';
+import { getTodosXMLHTTPRequest } from './helpers/requests';
 
 class App extends Component {
   constructor(props) {
@@ -18,23 +18,43 @@ class App extends Component {
   render() {
     return (
       <Fragment>
-        {this.state.isLoading
-          ? <Loading />
-          : null}
-        {this.state.isUserLogin
-          ? <ContentContainer />
-          : <VerificationContainer />}
+        {this.renderLoading()}
+        {this.renderContentOrVerification()}
       </Fragment>
     );
   }
 
-  componentWillMount() {    
-    if (existCookie('Authorization')) {
-      this.setState({
-        isUserLogin: true,
-      });
+  renderLoading = () => {
+    if (this.state.isLoading) {
+      return <Loading />;
+    } else {
+      return null;
     }
+  }
 
+  renderContentOrVerification = () => {
+    if (this.state.isUserLogin) {
+      return <Content />;
+    } else {
+      return <Verification />;
+    }
+  }
+
+  componentWillMount() {   
+    getTodosXMLHTTPRequest().then(
+      () => {
+        this.setState({
+          isUserLogin: true,
+        })
+        
+        this.show();
+      }
+    ).catch(
+      this.show
+    );
+  }
+
+  show = () => {
     this.setState({
       isLoading: false,
     });

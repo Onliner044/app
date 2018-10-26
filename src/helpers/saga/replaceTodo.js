@@ -1,4 +1,5 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
+
 import { todoListRequest } from './todoList';
 import { replaceTodoXMLHTTPRequest } from '../requests';
 
@@ -29,7 +30,6 @@ const replaceTodo = todo => new Promise((resolve, reject) => {
   ).catch(
     (value) => {
       alert('Ошибка');
-      console.log(value.status, value.responseText);
     },
   );
 });

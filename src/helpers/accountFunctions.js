@@ -10,7 +10,6 @@ export const logOut = () => {
   ).catch(
     (value) => {  
       alert('Ошибка!');
-      console.log(value.status, value.responseText);
     }
   )
 }

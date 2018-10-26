@@ -1,6 +1,5 @@
 import React from 'react';
 
-import Dropdown from './Dropdown';
 import { logOut } from '../helpers/accountFunctions';
 
 const UserPanel = () => (
@@ -14,23 +13,7 @@ const UserPanel = () => (
           defaultValue="Выйти"
           />
       </li>
-      {/*<li>
-        <Dropdown
-          textHide="Еще...↓"
-          textShow="Скрыть←"
-          >
-          <input
-            className="btn btn-danger"
-            //onClick={deleteAccount}
-            type="button"
-            defaultValue="Удалить аккаунт"
-            />
-        </Dropdown>
-      </li>*/}
     </ul>
-    {/*!auth.currentUser.emailVerified
-      ? <span className="redText">Подтвердите ваш E-mail для доступа к функционалу</span>
-      : null*/}
   </div>
 );
 

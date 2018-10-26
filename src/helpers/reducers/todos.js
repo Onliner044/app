@@ -7,9 +7,6 @@ export const todos = (state = initialState, action) => {
   switch (action.type) {
     case TODO_LIST_REQUEST:
       return state;
-      /*return {
-        data: [],
-      };*/
     case TODO_LIST_RESPONSE:
       const data = action.payload.map((todo) => ({
         id: todo.todoName,
